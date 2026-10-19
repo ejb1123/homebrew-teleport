@@ -15,7 +15,9 @@ cask "teleport-desktop" do
     strategy :github_latest
   end
 
-  depends_on macos: ">= :big_sur"
+  # The bundled Homebrew libraries from the macos-14 runner set the floor
+  # (tools/macos-app.sh copies their minos into LSMinimumSystemVersion).
+  depends_on macos: :sonoma
 
   app "Teleport.app"
   binary "#{appdir}/Teleport.app/Contents/MacOS/teleport", target: "teleport-desktop"
